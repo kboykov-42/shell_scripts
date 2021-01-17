@@ -16,11 +16,13 @@ find . -name .git -type d -prune | while IFS= read -r d;
 do
    if [ -d $d:h ]; then
         printf "${YELLOW} --> ${GREEN} found repo in ${d:h} ${NC}\n"
-        printf "execute: ${GREEN}git ${@}${NC}\n"
+        printf "execute: ${GREEN}git "
+        echo "$@"
+        printf "${NC}\n"
         cd $d:h
-	printf "\n ${NC}"
-        git $@
-	printf "\n ${NC}"
+        printf "\n ${NC}"
+        git "$@"
+        printf "\n ${NC}"
         cd $OLDPWD
     fi
 done
